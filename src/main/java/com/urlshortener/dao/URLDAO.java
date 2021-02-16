@@ -110,5 +110,31 @@ public class URLDAO {
 				return id;
 			
 		}
+	 
+	 public String getOriginalURL(URL lURLVO) {
+			// TODO Auto-generated method stub
+			 System.out.println("Inside getOriginalURL method of URLDAO");
+			 String originalURL = "";
+	    	 try{ 
+					
+					Session session = HibernateUtil.getSessionFactory().openSession() ;
+					
+
+		            // get an student object
+		            String hql = "select originalURL FROM URL l WHERE l.id = :id";
+		            
+		            Query query = session.createQuery(hql);
+		            query.setParameter("id", lURLVO.getId());
+		            originalURL =(String) query.getResultList().get(0);
+
+		           
+		            // commit transaction
+		          
+		        } catch (Exception e) {
+		        	 e.printStackTrace();
+		            }
+				return originalURL;
+			
+		}
 
 }

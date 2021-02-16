@@ -6,6 +6,13 @@ public class OutputVO {
 	private String status;
 	private String statusCode;
 	private String shortURL;
+	private String originalURL;
+	public String getOriginalURL() {
+		return originalURL;
+	}
+	public void setOriginalURL(String originalURL) {
+		this.originalURL = originalURL;
+	}
 	public String getStatus() {
 		return status;
 	}

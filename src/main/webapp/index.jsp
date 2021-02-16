@@ -30,7 +30,7 @@
     
     <input type="text" id="shorturlfield" name="urlfield" placeholder="Shortened url will be generated here.." disabled>
     
-     <input type="button" id="redirectButton" value="Redirect to URL" onClick="shortenURL();">
+     <input type="button" id="redirectButton" value="Redirect to URL" onClick="redirect();">
   </form>
 </div>
 

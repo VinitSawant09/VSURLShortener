@@ -72,6 +72,37 @@ public class URLShortenerController {
 		 return flag;
 	 }
 	 
+	 
+	 @RequestMapping(value = "/redirectToURL", method = { RequestMethod.GET, RequestMethod.POST })  
+     @ResponseBody
+	 public OutputVO redirectToURL(@RequestBody URL  lURLVO,HttpServletRequest request)
+	 {
+		System.out.println("Inside redirectToURL method of controller class URLShortenerController");
+        System.out.println(lURLVO.getShortURL());
+        OutputVO lOutputVO = new OutputVO();
+        String url = lURLVO.getShortURL();
+        URLDAO lURLDAO = new URLDAO();
+        try
+        {
+        	   url = url.replace("http://vsurl.com/",""); 
+        	   lURLVO.setId(URLShortenerUtil.shortURLtoID(url));
+        	   System.out.println(lURLVO.getId());
+        	   String originalURL = lURLDAO.getOriginalURL(lURLVO);
+        	   
+        	   lOutputVO.setOriginalURL(originalURL);
+        	   lOutputVO.setStatus("Success Fetching Original URL");
+           	   lOutputVO.setStatusCode("0");
+         
+        
+        }
+        catch(Exception e)
+        {
+        	lOutputVO.setStatus("Failure Fetching Original URL");
+        	lOutputVO.setStatusCode("1");
+        }
+        return lOutputVO; 
+         
+    }  
 	
 	
 	

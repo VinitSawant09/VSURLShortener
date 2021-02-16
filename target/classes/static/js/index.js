@@ -60,3 +60,38 @@ function isUrlValid(originalURL) {
         return true;
 }
 
+
+
+function redirect()
+{
+	var shortURL = document.getElementById("shorturlfield").value;
+	
+	
+	var registerData = 
+		{
+			"shortURL":shortURL
+			
+		}
+		            $.ajax(
+					       {
+					        url  : "./redirectToURL",
+					       headers: {
+					            "Accept": "application/json",
+					            "Content-Type": "application/json"
+								
+					        },
+					        type:"POST",
+					        data : JSON.stringify(registerData),
+					        contentType: 'application/json',
+					        cache: false,
+					        processData: false,
+					        success: function(response){
+									 var url = response.originalURL;
+						             console.log(response.originalURL);
+									 window.location.replace(url);
+						        }
+					});
+	
+	
+}
+

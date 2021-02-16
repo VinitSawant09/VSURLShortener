@@ -50,7 +50,7 @@ public class URLShortenerUtil {
     }  
 	
 	
-	static int shortURLtoID(String shortURL)  
+	public static int shortURLtoID(String shortURL)  
     {  
         int id = 0; // initialize result  
       
