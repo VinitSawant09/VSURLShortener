@@ -5,7 +5,28 @@ function shortenURL()
 	if(validateURL(originalUrl))
 	{
 		document.getElementById("errorMessage").innerHTML="";
-		alert("Validated.!!");
+		var registerData = 
+		{
+			"originalURL":originalUrl
+			
+		}
+		            $.ajax(
+					       {
+					        url  : "/generateShortURL",
+					       headers: {
+					            "Accept": "application/json",
+					            "Content-Type": "application/json"
+								
+					        },
+					        type:"POST",
+					        data : JSON.stringify(registerData),
+					        contentType: 'application/json',
+					        cache: false,
+					        processData: false,
+					        success: function(response){
+						
+						        }
+					});
 	}
 	
 }

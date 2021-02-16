@@ -28,7 +28,7 @@ public class URLShortenerController {
 	 public OutputVO generateShortURL(@RequestBody URLVO  lURLVO,HttpServletRequest request)
 	 {
 		System.out.println("Inside generateShortURL method of controller class URLShortenerController");
-       
+        System.out.println(lURLVO);
         OutputVO lOutputVO = new OutputVO();
         try
         {
