@@ -12,7 +12,7 @@ function shortenURL()
 		}
 		            $.ajax(
 					       {
-					        url  : "/generateShortURL",
+					        url  : "./generateShortURL",
 					       headers: {
 					            "Accept": "application/json",
 					            "Content-Type": "application/json"

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.urlshortener.model.URLVO;
-
+import com.urlshortener.util.URLValidator;
 import com.urlshortener.model.OutputVO;
 
 
@@ -28,21 +28,42 @@ public class URLShortenerController {
 	 public OutputVO generateShortURL(@RequestBody URLVO  lURLVO,HttpServletRequest request)
 	 {
 		System.out.println("Inside generateShortURL method of controller class URLShortenerController");
-        System.out.println(lURLVO);
+        System.out.println(lURLVO.getOriginalURL());
         OutputVO lOutputVO = new OutputVO();
         try
         {
-        
+           if(validateURL(lURLVO.getOriginalURL()))
+           {
+        	   System.out.println("It is a valid URL");
+        	   
+        	   
+           }
         
         }
         catch(Exception e)
         {
-        	lOutputVO.setStatus("Failure Creating User");
+        	lOutputVO.setStatus("Failure Creating Short URL");
         	lOutputVO.setStatusCode("1");
         }
         return lOutputVO; 
          
     }  
+	 
+	 public static boolean validateURL(String originalURL)
+	 {
+		 System.out.println("Inside validateURL method of controller class URLShortenerController");
+		 boolean flag = false ;
+		 
+		 if(!originalURL.equals("") && originalURL != null && originalURL != "" && URLValidator.urlValidator(originalURL))
+		 { 
+			 flag = true;
+		 }
+		 
+		 
+		 return flag;
+	 }
+	 
+	
 	
 	
 }
