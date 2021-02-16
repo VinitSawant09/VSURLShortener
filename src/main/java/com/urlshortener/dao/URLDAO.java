@@ -136,5 +136,31 @@ public class URLDAO {
 				return originalURL;
 			
 		}
+	 
+	 public long getCountOfURL() {
+			// TODO Auto-generated method stub
+			 System.out.println("Inside getCountOfURL method of URLDAO");
+			 long  count = 0;
+	    	 try{ 
+					
+					Session session = HibernateUtil.getSessionFactory().openSession() ;
+					
+
+		            // get an student object
+		            String hql = "select count(*) FROM URL";
+		            
+		            Query query = session.createQuery(hql);
+		            
+		            count =(Long) query.uniqueResult();
+
+		           
+		            // commit transaction
+		          
+		        } catch (Exception e) {
+		        	 e.printStackTrace();
+		            }
+				return count;
+			
+		}
 
 }

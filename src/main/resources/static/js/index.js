@@ -25,6 +25,7 @@ function shortenURL()
 					        processData: false,
 					        success: function(response){
 						             console.log(response.shortURL);
+                                     console.log(response.urlCount);
 									 document.getElementById("shorturlfield").value=response.shortURL;
 						        }
 					});
@@ -88,6 +89,7 @@ function redirect()
 					        success: function(response){
 									 var url = response.originalURL;
 						             console.log(response.originalURL);
+									 console.log(response.urlCount);
 									 window.location.replace(url);
 						        }
 					});

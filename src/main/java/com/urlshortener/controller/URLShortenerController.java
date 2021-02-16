@@ -43,7 +43,7 @@ public class URLShortenerController {
         	   
         	   int flag = lURLDAO.registerURL(lURLVO);
         	   lOutputVO.setShortURL(URLShortenerUtil.shortURLGenerator(lURLVO));
-        	  
+        	   lOutputVO.setUrlCount(lURLDAO.getCountOfURL());
         	   lOutputVO.setStatus("Success Creating Short URL");
            	   lOutputVO.setStatusCode("0");
            }
@@ -90,6 +90,7 @@ public class URLShortenerController {
         	   String originalURL = lURLDAO.getOriginalURL(lURLVO);
         	   
         	   lOutputVO.setOriginalURL(originalURL);
+        	   lOutputVO.setUrlCount(lURLDAO.getCountOfURL());
         	   lOutputVO.setStatus("Success Fetching Original URL");
            	   lOutputVO.setStatusCode("0");
          

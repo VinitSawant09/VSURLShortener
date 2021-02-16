@@ -7,6 +7,13 @@ public class OutputVO {
 	private String statusCode;
 	private String shortURL;
 	private String originalURL;
+	private Long urlCount;
+	public Long getUrlCount() {
+		return urlCount;
+	}
+	public void setUrlCount(long l) {
+		this.urlCount = l;
+	}
 	public String getOriginalURL() {
 		return originalURL;
 	}
