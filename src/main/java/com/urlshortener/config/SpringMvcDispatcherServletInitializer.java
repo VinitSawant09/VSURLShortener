@@ -2,13 +2,15 @@ package com.urlshortener.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.urlshortener.config.AppContext;
+
 public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class <?> [] getRootConfigClasses() {
        
     	 return new Class[] {
-    	           
+    			 AppContext.class
     	        };
     }
 

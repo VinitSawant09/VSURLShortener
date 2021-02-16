@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.urlshortener.model.URLVO;
+import com.urlshortener.model.URL;
 import com.urlshortener.util.URLShortenerUtil;
 import com.urlshortener.util.URLValidator;
+import com.urlshortener.dao.URLDAO;
 import com.urlshortener.model.OutputVO;
 
 
@@ -26,19 +27,23 @@ public class URLShortenerController {
 	
 	 @RequestMapping(value = "/generateShortURL", method = { RequestMethod.GET, RequestMethod.POST })  
      @ResponseBody
-	 public OutputVO generateShortURL(@RequestBody URLVO  lURLVO,HttpServletRequest request)
+	 public OutputVO generateShortURL(@RequestBody URL  lURLVO,HttpServletRequest request)
 	 {
 		System.out.println("Inside generateShortURL method of controller class URLShortenerController");
         System.out.println(lURLVO.getOriginalURL());
         OutputVO lOutputVO = new OutputVO();
         String url = lURLVO.getOriginalURL();
+        URLDAO lURLDAO = new URLDAO();
         try
         {
            if(validateURL(url))
            {
         	   System.out.println("It is a valid URL");
         	   
-        	   lOutputVO.setShortURL(URLShortenerUtil.shortURLGenerator(url));
+        	   
+        	   int flag = lURLDAO.registerURL(lURLVO);
+        	   lOutputVO.setShortURL(URLShortenerUtil.shortURLGenerator(lURLVO));
+        	  
         	   lOutputVO.setStatus("Success Creating Short URL");
            	   lOutputVO.setStatusCode("0");
            }

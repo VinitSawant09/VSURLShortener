@@ -1,17 +1,26 @@
 package com.urlshortener.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import java.util.Random;
+import java.util.Scanner;
+
+import com.urlshortener.dao.URLDAO;
+import com.urlshortener.model.URL;
 
 public class URLShortenerUtil {
 
-	public static String shortURLGenerator(String url)
+	public static String shortURLGenerator(URL lURLVO)
 	{
 		String shortURL = "";
+		/*
 		Random random = new Random();
 		int randomInteger = random.nextInt(Integer.MAX_VALUE);
 	    System.out.println("Int : " + randomInteger);
-
-        shortURL = idToShortURL(randomInteger);
+	    */
+		URLDAO lURLDAO = new URLDAO();
+        shortURL = idToShortURL(lURLDAO.getURLId(lURLVO));
         System.out.println("Shortened Url is:");
 		System.out.println("http://vsurl.com/"+shortURL);
 		
@@ -65,9 +74,10 @@ public class URLShortenerUtil {
 		// TODO Auto-generated method stub
          String url = "https://www.google.com/";
         // System.out.println("="+URLShortenerUtil.shortURLGenerator(url));
+         /*
          String shortUrl = URLShortenerUtil.shortURLGenerator(url);
          System.out.println("="+URLShortenerUtil.shortURLtoID(shortUrl));
-         
+     */    
 	}
 
 }
