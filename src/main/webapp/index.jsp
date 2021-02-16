@@ -32,6 +32,9 @@
     
      <input type="button" id="redirectButton" value="Redirect to URL" onClick="redirect();">
   </form>
+  <h1>
+  <span id="urlCounter" style="color:red"> </span>
+  </h1>
 </div>
 
 </body>

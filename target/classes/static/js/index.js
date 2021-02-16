@@ -24,9 +24,11 @@ function shortenURL()
 					        cache: false,
 					        processData: false,
 					        success: function(response){
+						             document.getElementById("urlCounter").innerHTML="";
 						             console.log(response.shortURL);
                                      console.log(response.urlCount);
 									 document.getElementById("shorturlfield").value=response.shortURL;
+								     document.getElementById("urlCounter").innerHTML="URL Count = "+response.urlCount;
 						        }
 					});
 	}
