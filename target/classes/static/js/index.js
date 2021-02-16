@@ -24,7 +24,8 @@ function shortenURL()
 					        cache: false,
 					        processData: false,
 					        success: function(response){
-						
+						             console.log(response.shortURL);
+									 document.getElementById("shorturlfield").value=response.shortURL;
 						        }
 					});
 	}

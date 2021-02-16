@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.urlshortener.model.URLVO;
+import com.urlshortener.util.URLShortenerUtil;
 import com.urlshortener.util.URLValidator;
 import com.urlshortener.model.OutputVO;
 
@@ -30,13 +31,16 @@ public class URLShortenerController {
 		System.out.println("Inside generateShortURL method of controller class URLShortenerController");
         System.out.println(lURLVO.getOriginalURL());
         OutputVO lOutputVO = new OutputVO();
+        String url = lURLVO.getOriginalURL();
         try
         {
-           if(validateURL(lURLVO.getOriginalURL()))
+           if(validateURL(url))
            {
         	   System.out.println("It is a valid URL");
         	   
-        	   
+        	   lOutputVO.setShortURL(URLShortenerUtil.shortURLGenerator(url));
+        	   lOutputVO.setStatus("Success Creating Short URL");
+           	   lOutputVO.setStatusCode("0");
            }
         
         }

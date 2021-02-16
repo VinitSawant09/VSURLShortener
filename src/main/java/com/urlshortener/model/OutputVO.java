@@ -4,6 +4,8 @@ import java.util.List;
 
 public class OutputVO {
 	private String status;
+	private String statusCode;
+	private String shortURL;
 	public String getStatus() {
 		return status;
 	}
@@ -16,6 +18,12 @@ public class OutputVO {
 	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
 	}
-	private String statusCode;
+	public String getShortURL() {
+		return shortURL;
+	}
+	public void setShortURL(String shortURL) {
+		this.shortURL = shortURL;
+	}
+	
 	
 }

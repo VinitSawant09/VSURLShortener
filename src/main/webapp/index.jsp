@@ -27,6 +27,10 @@
     <span id="errorMessage" style="color:red">
     
     </span>
+    
+    <input type="text" id="shorturlfield" name="urlfield" placeholder="Shortened url will be generated here.." disabled>
+    
+     <input type="button" id="redirectButton" value="Redirect to URL" onClick="shortenURL();">
   </form>
 </div>
 

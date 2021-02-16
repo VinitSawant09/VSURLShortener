@@ -16,7 +16,7 @@ public class URLShortenerUtil {
 		System.out.println("http://vsurl.com/"+shortURL);
 		
 		
-		return shortURL;
+		return "http://vsurl.com/"+shortURL;
 	}
 	
 	
