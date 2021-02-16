@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name = "URL")
 public class URL {
     
-	 @Column(name = "originalURL")
+	 @Column(name = "originalURL",columnDefinition = "VARCHAR(4000)")
 	 private String originalURL;
 	 
 	 

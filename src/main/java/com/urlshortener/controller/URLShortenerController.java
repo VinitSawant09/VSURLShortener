@@ -86,7 +86,6 @@ public class URLShortenerController {
         {
         	   url = url.replace("http://vsurl.com/",""); 
         	   lURLVO.setId(URLShortenerUtil.shortURLtoID(url));
-        	   System.out.println(lURLVO.getId());
         	   String originalURL = lURLDAO.getOriginalURL(lURLVO);
         	   
         	   lOutputVO.setOriginalURL(originalURL);
