@@ -26,3 +26,9 @@ Validations:
 Shortened URL Output: (Clicking on the redirect button will redirect you to the desired address)
 
 ![alt text](https://raw.githubusercontent.com/VinitSawant09/VSURLShortener/main/src/main/resources/static/vurlimg/shortenedURL.PNG)
+
+
+Analytics:
+
+1) Count of unique URLs shortened - /getCountURL
+2) Top 5 shortened URLs - /fetchTop5URL
