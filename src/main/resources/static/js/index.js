@@ -25,9 +25,17 @@ function shortenURL()
 					        processData: false,
 					        success: function(response){
 						             document.getElementById("urlCounter").innerHTML="";
-						             
-									 document.getElementById("shorturlfield").value=response.shortURL;
-								     document.getElementById("urlCounter").innerHTML="URL Count = "+response.urlCount;
+						             if(response.statusCode == "0")
+
+								     {
+									   document.getElementById("errorMessage").innerHTML="";
+									   document.getElementById("shorturlfield").value=response.shortURL;
+								       document.getElementById("urlCounter").innerHTML="URL Count = "+response.urlCount;
+			                         }
+                                     else
+                                     {
+	                                     document.getElementById("errorMessage").innerHTML="Error shortening URL";
+									 }
 						        }
 					});
 	}
@@ -88,10 +96,19 @@ function redirect()
 					        cache: false,
 					        processData: false,
 					        success: function(response){
-									 var url = response.originalURL;
-						            
-									 window.location.replace(url);
-						        }
+								 if(response.statusCode == "0")
+								     {	 
+									    document.getElementById("errorMessage").innerHTML="";
+										var url = response.originalURL;
+								            
+											 window.location.replace(url);
+						        		}
+                                 else
+                                     {
+	                                     document.getElementById("errorMessage").innerHTML="Error shortening URL";
+									 }
+                                      }
+           
 					});
 	
 	

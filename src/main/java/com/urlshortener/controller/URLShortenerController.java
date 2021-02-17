@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.urlshortener.model.URL;
 import com.urlshortener.util.URLShortenerUtil;
 import com.urlshortener.util.URLValidator;
@@ -27,7 +25,9 @@ import com.urlshortener.model.OutputVO;
 @Scope("session")
 public class URLShortenerController {
 
-	
+	/*generateShortURL method will take input in the form of json with originalURL field and will return the shortened url as well as 
+	 count of urls in db
+	 */
 	 @RequestMapping(value = "/generateShortURL", method = { RequestMethod.GET, RequestMethod.POST })  
      @ResponseBody
 	 public OutputVO generateShortURL(@RequestBody URL  lURLVO,HttpServletRequest request)
@@ -61,6 +61,8 @@ public class URLShortenerController {
          
     }  
 	 
+	 /*Validate url method will check if the url string is empty, null etc and will also check if it is valid url or not */
+	 
 	 public  boolean validateURL(String originalURL)
 	 {
 		 System.out.println("Inside validateURL method of controller class URLShortenerController");
@@ -82,6 +84,7 @@ public class URLShortenerController {
 		 return flag;
 	 }
 	 
+	 /*This method will convert short url to particular integer value and find the corresponding original url from table URL*/
 	 
 	 @RequestMapping(value = "/redirectToURL", method = { RequestMethod.GET, RequestMethod.POST })  
      @ResponseBody
@@ -114,6 +117,7 @@ public class URLShortenerController {
          
     }  
 	
+	 /*The method getCountURL will be used for analytics to find out the number of unique URLs shortened*/
 	 
 	 @RequestMapping(value = "/getCountURL", method = { RequestMethod.GET, RequestMethod.POST })  
      @ResponseBody
@@ -141,6 +145,9 @@ public class URLShortenerController {
         return lOutputVO; 
          
     }  
+	 
+	 /*The method fetchTop5URL will be used for analytics to find out the top 5 shortened URLs*/
+
 	 
 	 @RequestMapping(value = "/fetchTop5URL", method = { RequestMethod.GET, RequestMethod.POST })  
      @ResponseBody

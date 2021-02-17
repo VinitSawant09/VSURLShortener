@@ -1,15 +1,12 @@
 package com.urlshortener.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
-
 import com.urlshortener.hibernate.HibernateUtil;
 import com.urlshortener.model.URL;
 
@@ -120,7 +117,7 @@ public class URLDAO {
 	 public URL getURLCounter(URL lURLVO) {
 			// TODO Auto-generated method stub
 			 System.out.println("Inside getURLCounter method of URLDAO");
-			 int id = 0;
+			
 			 URL objURL = null;
 	    	 try{ 
 					
