@@ -6,3 +6,23 @@ Technologies used:
 3) Hibernate ORM 5.4.21
 4) HSQL DB 2.4.0 (In memory database)
 5) JUnit 5 
+
+
+Landing page:
+
+![alt text](https://raw.githubusercontent.com/VinitSawant09/VSURLShortener/main/src/main/resources/static/vurlimg/landingPage.PNG)
+
+
+
+Validations:
+
+1) ![alt text](https://raw.githubusercontent.com/VinitSawant09/VSURLShortener/main/src/main/resources/static/vurlimg/validation1.PNG)
+
+
+2) ![alt text](https://raw.githubusercontent.com/VinitSawant09/VSURLShortener/main/src/main/resources/static/vurlimg/validation2.PNG)
+
+
+
+Shortened URL Output: (Clicking on the redirect button will redirect you to the desired address)
+
+![alt text](https://raw.githubusercontent.com/VinitSawant09/VSURLShortener/main/src/main/resources/static/vurlimg/shortenedURL.PNG)
