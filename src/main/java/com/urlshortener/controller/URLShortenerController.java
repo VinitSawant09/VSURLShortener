@@ -58,12 +58,19 @@ public class URLShortenerController {
          
     }  
 	 
-	 public static boolean validateURL(String originalURL)
+	 public  boolean validateURL(String originalURL)
 	 {
 		 System.out.println("Inside validateURL method of controller class URLShortenerController");
 		 boolean flag = false ;
 		 
-		 if(!originalURL.equals("") && originalURL != null && originalURL != "" && URLValidator.urlValidator(originalURL))
+		 
+		 if(originalURL == null)
+		 {
+			 
+			 return false;
+		 }
+		 else
+		 if(!originalURL.equals("") && originalURL != "" && URLValidator.urlValidator(originalURL))
 		 { 
 			 flag = true;
 		 }
