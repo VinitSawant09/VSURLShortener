@@ -111,6 +111,33 @@ public class URLShortenerController {
          
     }  
 	
+	 
+	 @RequestMapping(value = "/getCountURL", method = { RequestMethod.GET, RequestMethod.POST })  
+     @ResponseBody
+	 public OutputVO getCountURL(HttpServletRequest request)
+	 {
+		System.out.println("Inside getCountURL method of controller class URLShortenerController");
+        
+        OutputVO lOutputVO = new OutputVO();
+        
+        URLDAO lURLDAO = new URLDAO();
+        try
+        {
+        	  
+        	   lOutputVO.setUrlCount(lURLDAO.getCountOfURL());
+        	   lOutputVO.setStatus("Success Fetching Count of URL");
+           	   lOutputVO.setStatusCode("0");
+         
+        
+        }
+        catch(Exception e)
+        {
+        	lOutputVO.setStatus("Failure Fetching Count of URL");
+        	lOutputVO.setStatusCode("1");
+        }
+        return lOutputVO; 
+         
+    }  
 	
 	
 }
