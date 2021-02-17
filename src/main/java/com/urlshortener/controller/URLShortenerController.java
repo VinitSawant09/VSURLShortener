@@ -1,5 +1,8 @@
 package com.urlshortener.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
@@ -133,6 +136,35 @@ public class URLShortenerController {
         catch(Exception e)
         {
         	lOutputVO.setStatus("Failure Fetching Count of URL");
+        	lOutputVO.setStatusCode("1");
+        }
+        return lOutputVO; 
+         
+    }  
+	 
+	 @RequestMapping(value = "/fetchTop5URL", method = { RequestMethod.GET, RequestMethod.POST })  
+     @ResponseBody
+	 public OutputVO fetchTop5URL(HttpServletRequest request)
+	 {
+		System.out.println("Inside fetchTop5URL method of controller class URLShortenerController");
+        
+        OutputVO lOutputVO = new OutputVO();
+        
+        URLDAO lURLDAO = new URLDAO();
+        List<URL> urllist = new ArrayList<URL>();
+        try
+        {
+        	   
+        	   urllist = lURLDAO.fetchTop5URL();
+        	   lOutputVO.setUrlList(urllist);
+        	   lOutputVO.setStatus("Success Fetching List of top 5 URL");
+           	   lOutputVO.setStatusCode("0");
+         
+        
+        }
+        catch(Exception e)
+        {
+        	lOutputVO.setStatus("Failure Fetching List of top 5 URL");
         	lOutputVO.setStatusCode("1");
         }
         return lOutputVO; 

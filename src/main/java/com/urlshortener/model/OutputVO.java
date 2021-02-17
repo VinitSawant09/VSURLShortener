@@ -8,6 +8,16 @@ public class OutputVO {
 	private String shortURL;
 	private String originalURL;
 	private Long urlCount;
+	private List<URL> urlList;
+	public List<URL> getUrlList() {
+		return urlList;
+	}
+	public void setUrlList(List<URL> urlList) {
+		this.urlList = urlList;
+	}
+	public void setUrlCount(Long urlCount) {
+		this.urlCount = urlCount;
+	}
 	public Long getUrlCount() {
 		return urlCount;
 	}

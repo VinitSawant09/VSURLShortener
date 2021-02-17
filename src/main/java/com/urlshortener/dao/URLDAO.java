@@ -1,6 +1,7 @@
 package com.urlshortener.dao;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.urlshortener.hibernate.HibernateUtil;
 import com.urlshortener.model.URL;
+
 
 
 
@@ -32,6 +34,7 @@ public class URLDAO {
 	            if(!checkURLExists(lURLVO))
 	            {
 	            // save the user objects
+	            lURLVO.setCounter(1);
 	            session.save(newURL);
 	            transaction.commit();
 	            
@@ -39,9 +42,12 @@ public class URLDAO {
 	            }
 	            else
 	            {
+	            	newURL = getURLCounter(lURLVO);
+	            	updateURLCounter(newURL);
+	 	            transaction.commit();
 	            	
-	            	id = getURLId(lURLVO);
 	            }
+	            
 	            
 	           	// commit transaction
 	           
@@ -111,6 +117,36 @@ public class URLDAO {
 			
 		}
 	 
+	 public URL getURLCounter(URL lURLVO) {
+			// TODO Auto-generated method stub
+			 System.out.println("Inside getURLCounter method of URLDAO");
+			 int id = 0;
+			 URL objURL = null;
+	    	 try{ 
+					
+					Session session = HibernateUtil.getSessionFactory().openSession() ;
+					
+					
+		            // get an student object
+		            String hql = " FROM URL l WHERE l.originalURL = :originalURL";
+		            
+		            Query query = session.createQuery(hql);
+		           
+		            query.setParameter("originalURL", lURLVO.getOriginalURL());
+		            objURL = (URL) query.getResultList().get(0);
+		            
+		            
+
+		           
+		            // commit transaction
+		          
+		        } catch (Exception e) {
+		        	 e.printStackTrace();
+		            }
+				return objURL;
+			
+		}
+	 
 	 public String getOriginalURL(URL lURLVO) {
 			// TODO Auto-generated method stub
 			 System.out.println("Inside getOriginalURL method of URLDAO");
@@ -160,6 +196,64 @@ public class URLDAO {
 		        	 e.printStackTrace();
 		            }
 				return count;
+			
+		}
+	 
+	 public int updateURLCounter(URL objURL) {
+			// TODO Auto-generated method stub
+			
+			System.out.println("Inside updateURLCounter method of URLDAO");
+			int result = 0;
+			
+			 Transaction transaction = null;
+				try{ 
+				int id= objURL.getId();
+				int counter = objURL.getCounter()+1;
+				Session session = HibernateUtil.getSessionFactory().openSession() ;
+				 transaction = session.beginTransaction();
+	            String query = "update URL u set u.counter=:counter where u.id=:id";
+	            Query query1 = session.createQuery(query);
+	            query1.setParameter("counter", counter);
+	            query1.setParameter("id", id);
+	            result = query1.executeUpdate();
+	          
+	            transaction.commit();
+	           
+	        } catch (Exception e) {
+	        	 if (transaction != null) {
+		                transaction.rollback();
+		            }
+		            e.printStackTrace();
+		            return 1;
+	            }
+	           
+			return 0;
+		}
+	 
+	 
+	 public List<URL> fetchTop5URL() {
+			// TODO Auto-generated method stub
+			 System.out.println("Inside fetchTop5URL method of URLDAO");
+			 List<URL> urlList  = new ArrayList<URL>();
+	    	 try{ 
+					
+					Session session = HibernateUtil.getSessionFactory().openSession() ;
+					
+
+		            // get an student object
+		            String hql = " FROM URL order by counter desc";
+		            
+		            Query query = session.createQuery(hql);
+		            
+		            urlList = query.getResultList();
+
+		            query.setMaxResults(5);
+		            // commit transaction
+		          
+		        } catch (Exception e) {
+		        	 e.printStackTrace();
+		            }
+				return urlList;
 			
 		}
 
