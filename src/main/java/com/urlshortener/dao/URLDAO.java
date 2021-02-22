@@ -242,9 +242,11 @@ public class URLDAO {
 		            
 		            Query query = session.createQuery(hql);
 		            
+		            query.setMaxResults(5);
+		            
 		            urlList = query.getResultList();
 
-		            query.setMaxResults(5);
+		           
 		            // commit transaction
 		          
 		        } catch (Exception e) {
